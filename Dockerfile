@@ -13,6 +13,7 @@ RUN build_packages="libmcrypt-dev libpng12-dev libfreetype6-dev libjpeg62-turbo-
     && echo "no" | pecl install memcached-$PHP_EXT_MEMCACHED_VERSION && docker-php-ext-enable memcached \
     && docker-php-ext-install pcntl \
     && docker-php-ext-install pdo_mysql \
+    && docker-php-ext-install opcache \
     && docker-php-ext-install redis \
     && docker-php-ext-install soap \
     && yes | pecl install xdebug && docker-php-ext-enable xdebug \
