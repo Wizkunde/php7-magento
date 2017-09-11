@@ -1,5 +1,5 @@
 FROM php:7.1-fpm
-MAINTAINER Tomas Gerulaitis <tomas.gerulaitis@meanbee.com>
+MAINTAINER Ron van der Molen <ron@wizkunde.nl>
 
 ENV PHP_EXT_APCU_VERSION "5.1.7"
 ENV PHP_EXT_MEMCACHED_VERSION "3.0.3"
