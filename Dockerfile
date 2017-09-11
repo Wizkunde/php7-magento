@@ -1,4 +1,4 @@
-FROM php:7.1-fpm
+FROM php:7.0-fpm
 MAINTAINER Ron van der Molen <ron@wizkunde.nl>
 
 ENV PHP_EXT_APCU_VERSION "5.1.7"
