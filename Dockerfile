@@ -16,7 +16,6 @@ RUN build_packages="libmcrypt-dev libpng12-dev libfreetype6-dev libjpeg62-turbo-
     && docker-php-ext-install gd \
     && docker-php-ext-install mbstring \
     && docker-php-ext-install mcrypt \
-    && pecl install apcu_bc-$PHP_EXT_APCU_BC_VERSION && docker-php-ext-enable apc \
     && echo "no" | pecl install memcached-$PHP_EXT_MEMCACHED_VERSION && docker-php-ext-enable memcached \
     && docker-php-ext-install mysqli \
     && docker-php-ext-install pcntl \
