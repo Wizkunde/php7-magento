@@ -24,6 +24,7 @@ RUN build_packages="libmcrypt-dev libpng12-dev libfreetype6-dev libjpeg62-turbo-
     && docker-php-ext-install xsl \
     && docker-php-ext-install zip \
     && docker-php-ext-install intl \
+    && docker-php-ext-enable soap \
     && wget -O - https://packagecloud.io/gpg.key | apt-key add - \
     && echo "deb http://packages.blackfire.io/debian any main" | tee /etc/apt/sources.list.d/blackfire.list \
     && apt-get update && apt-get install -y blackfire-agent blackfire-php \
