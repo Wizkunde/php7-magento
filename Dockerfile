@@ -2,11 +2,10 @@ FROM php:7.0-fpm
 MAINTAINER Ron van der Molen <ron@wizkunde.nl>
 
 ENV PHP_EXT_APCU_VERSION "5.1.7"
-ENV PHP_EXT_APCU_BC_VERSION "1.0.3"
 ENV PHP_EXT_MEMCACHED_VERSION "3.0.3"
 ENV PHPREDIS_VERSION 3.0.0
 
-RUN build_packages="libmcrypt-dev libpng12-dev libfreetype6-dev libjpeg62-turbo-dev libxml2-dev libxslt1-dev libmemcached-dev sendmail-bin sendmail libicu-dev" \
+RUN build_packages="libmcrypt-dev libpng12-dev libfreetype6-dev libjpeg62-turbo-dev libxml2-dev libxslt1-dev libmemcached-dev sendmail-bin sendmail libicu-dev wget" \
     && apt-get update && apt-get install -y $build_packages \
     && yes "" | pecl install apcu-$PHP_EXT_APCU_VERSION && docker-php-ext-enable apcu \
     && mkdir -p /usr/src/php/ext/redis \
@@ -27,8 +26,8 @@ RUN build_packages="libmcrypt-dev libpng12-dev libfreetype6-dev libjpeg62-turbo-
     && docker-php-ext-install xsl \
     && docker-php-ext-install zip \
     && docker-php-ext-install intl \
-    && wget -O - https://packagecloud.io/gpg.key | sudo apt-key add - \
-    && echo "deb http://packages.blackfire.io/debian any main" | sudo tee /etc/apt/sources.list.d/blackfire.list \
+    && wget -O - https://packagecloud.io/gpg.key | apt-key add - \
+    && echo "deb http://packages.blackfire.io/debian any main" | tee /etc/apt/sources.list.d/blackfire.list \
     && apt-get update && apt-get install -y blackfire-agent blackfire-php \
     && apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
