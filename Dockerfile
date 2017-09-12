@@ -1,13 +1,11 @@
 FROM php:7.0-fpm
 MAINTAINER Ron van der Molen <ron@wizkunde.nl>
 
-ENV PHP_EXT_APCU_VERSION "5.1.7"
 ENV PHP_EXT_MEMCACHED_VERSION "3.0.3"
 ENV PHPREDIS_VERSION 3.0.0
 
 RUN build_packages="libmcrypt-dev libpng12-dev libfreetype6-dev libjpeg62-turbo-dev libxml2-dev libxslt1-dev libmemcached-dev sendmail-bin sendmail libicu-dev wget" \
     && apt-get update && apt-get install -y $build_packages \
-    && yes "" | pecl install apcu-$PHP_EXT_APCU_VERSION && docker-php-ext-enable apcu \
     && mkdir -p /usr/src/php/ext/redis \
     && curl -L https://github.com/phpredis/phpredis/archive/$PHPREDIS_VERSION.tar.gz | tar xvz -C /usr/src/php/ext/redis --strip 1 \
     && echo 'redis' >> /usr/src/php-available-exts \
